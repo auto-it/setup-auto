@@ -1,6 +1,9 @@
 name: 'Setup Auto'
 description: 'GitHub Action to install Auto release tool'
 author: 'Alexey Alekhin'
+branding:
+  icon: at-sign
+  color: yellow
 inputs:
   version:
     description: 'Version of Auto to install (latest by default)'
