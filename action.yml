@@ -26,7 +26,9 @@ runs:
         gh release download -R intuit/auto -p "$name.gz" -D "$tmp"
         gunzip "$tmp/$name.gz"
         chmod +x "$tmp/$name"
+        mkdir -k $HOME/bin
         mv "$tmp/$name" $HOME/bin/auto
+        echo "$HOME/bin" >> $GITHUB_PATH
 
     - name: Check Auto installation
       shell: bash
