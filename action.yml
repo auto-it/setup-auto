@@ -17,9 +17,13 @@ runs:
         platform='linux'
         [ '${{ runner.os }}' == 'macOS' ] && platform='macos'
         [ '${{ runner.os }}' == 'Windows' ] && platform='win.exe'
-        gh release download -R intuit/auto -p "auto-${platform}.gz" -D "${{ runner.temp }}"
-        sudo gunzip -c "${{ runner.temp }}/auto-${platform}.gz" > /usr/bin/auto
-        sudo chmod +x /usr/bin/auto
+        name="auto-${platform}"
+        tmp="${{ runner.temp }}"
+
+        gh release download -R intuit/auto -p "$name.gz" -D "$tmp"
+        gunzip "$tmp/$name.gz"
+        chmod +x "$tmp/$name"
+        sudo mv "$tmp/$name" /usr/bin/auto
 
     - name: Check Auto installation
       shell: bash
