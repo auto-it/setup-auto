@@ -24,7 +24,11 @@ runs:
         name="auto-${platform}"
         tmp="${{ runner.temp }}"
 
-        gh release download ${{ inputs.version }} -R intuit/auto -p "$name.gz" -D "$tmp"
+        gh release \
+          download ${{ inputs.version }} \
+          --repo intuit/auto \
+          --pattern "$name.gz" \
+          --dir "$tmp"
         gunzip "$tmp/$name.gz"
         chmod +x "$tmp/$name"
 
