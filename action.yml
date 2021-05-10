@@ -19,7 +19,7 @@ runs:
         [ '${{ runner.os }}' == 'Windows' ] && platform='win.exe'
         gh release download -R intuit/auto -p "auto-${platform}.gz" -D "${{ runner.temp }}"
         sudo gunzip -c "${{ runner.temp }}/auto-${platform}.gz" > /usr/bin/auto
-        sudo chmod a+x /usr/bin/auto
+        sudo chmod +x /usr/bin/auto
 
     - name: Check Auto installation
       shell: bash
