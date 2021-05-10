@@ -8,7 +8,7 @@ inputs:
   version:
     description: 'Version of Auto to install (latest by default)'
     required: false
-  git-username:
+  git-user:
     description: 'Git user name to set for Auto'
     required: false
     default: 'github-actions[bot]'
@@ -27,7 +27,7 @@ runs:
       shell: bash
       run: |
         echo "GH_TOKEN=${{ inputs.gh-token }}" >> $GITHUB_ENV
-        git config user.name "${{ inputs.git-username }}"
+        git config user.name "${{ inputs.git-user }}"
         git config user.email "${{ inputs.git-email }}"
 
     - name: Install Auto binary
