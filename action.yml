@@ -5,15 +5,27 @@ inputs:
   version:
     description: 'Version of Auto to install (latest by default)'
     required: false
+  git-username:
+    description: 'Git user name to set for Auto'
+    required: false
+    default: 'github-actions[bot]'
+  git-email:
+    description: 'Git email to set for Auto'
+    required: false
+    default: '41898282+github-actions[bot]@users.noreply.github.com'
+  gh-token:
+    description: 'GH_TOKEN for Auto'
+    required: false
+    default: ${{ github.token }}
 runs:
   using: composite
   steps:
     - name: Set up GitHub credentials for Auto
       shell: bash
       run: |
-        echo "GH_TOKEN=${{ github.token }}" >> $GITHUB_ENV
-        git config user.name "github-actions[bot]"
-        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        echo "GH_TOKEN=${{ inputs.gh-token }}" >> $GITHUB_ENV
+        git config user.name "${{ inputs.git-username }}"
+        git config user.email "${{ inputs.git-email }}"
 
     - name: Install Auto binary
       shell: bash
