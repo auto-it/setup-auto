@@ -1,0 +1,27 @@
+name: 'Setup Auto'
+description: 'GitHub Action to install Auto release tool'
+author: 'Alexey Alekhin'
+runs:
+  using: composite
+  steps:
+    - name: Set up GitHub credentials for Auto
+      shell: bash
+      run: |
+        echo "GH_TOKEN=${{ github.token }}" >> $GITHUB_ENV
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+    - name: Install Auto binary
+      shell: bash
+      run: |
+        platform='linux'
+        [ '${{ runner.os }}' == 'macOS' ] && platform='macos'
+        [ '${{ runner.os }}' == 'Windows' ] && platform='win.exe'
+        gh release download -R intuit/auto -p "auto-${platform}.gz" -D "${{ runner.temp }}"
+        sudo gunzip -c "${{ runner.temp }}/auto-${platform}.gz" > /usr/bin/auto
+        chmod a+x /usr/bin/auto
+
+    - name: Check Auto installation
+      shell: bash
+      run: |
+        auto --help
