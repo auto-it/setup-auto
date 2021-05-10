@@ -26,7 +26,7 @@ runs:
         gh release download -R intuit/auto -p "$name.gz" -D "$tmp"
         gunzip "$tmp/$name.gz"
         chmod +x "$tmp/$name"
-        mv "$tmp/$name" /usr/bin/auto
+        mv "$tmp/$name" /usr/local/bin/auto
 
     - name: Check Auto installation
       shell: bash
