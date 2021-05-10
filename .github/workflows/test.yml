@@ -3,8 +3,11 @@ name: CI
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
+    version:
+      description: 'Version of Auto to install (latest by default)'
+      required: false
 
 defaults:
   run:
