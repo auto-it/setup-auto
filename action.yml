@@ -12,7 +12,7 @@ runs:
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
     
     - shell: bash
-      run: print env
+      run: env
 
     - name: Install Auto binary
       shell: bash
