@@ -20,8 +20,14 @@ jobs:
     runs-on: # ...
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - uses: laughedelic/setup-auto@v1
-      - run: auto shipit
+
+      - name: Release
+        run: auto shipit
 ```
 
-See [`action.yml`](./action.yml) for available inputs.
+See [`action.yml`](./action.yml) for available action inputs.
+Notice that `checkout` step with `fetch-depth: 0` is required for Auto to be able to run and calculate the version correctly.
