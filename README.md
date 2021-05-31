@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: laughedelic/setup-auto@v1
+      - uses: auto-it/setup-auto@v1
 
       - name: Release
         run: auto shipit
