@@ -49,8 +49,3 @@ runs:
         mkdir "$HOME/bin"
         mv "$tmp/$name" "$HOME/bin/auto"
         echo "$HOME/bin" >> $GITHUB_PATH
-
-    - name: Check Auto installation
-      shell: bash
-      run: |
-        auto --help
