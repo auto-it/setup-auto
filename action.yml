@@ -45,3 +45,7 @@ runs:
         mkdir "$HOME/bin"
         mv "$tmp/$name" "$HOME/bin/auto"
         echo "$HOME/bin" >> $GITHUB_PATH
+
+        link='https://raw.github.pharos.com/pharos/.github/main/auto-default.json'
+        curl -sL $link -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3+json" -o "$HOME/bin/.autorc.json"
+        cat "$HOME/bin/.autorc.json"
