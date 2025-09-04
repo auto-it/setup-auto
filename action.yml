@@ -57,5 +57,4 @@ runs:
 
     - name: Check Auto installation
       shell: bash
-      run: |
-        auto --help
+      run: auto --version
