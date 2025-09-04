@@ -20,6 +20,10 @@ inputs:
     description: 'GH_TOKEN for Auto'
     required: false
     default: ${{ github.token }}
+  origin-repo:
+    description: 'Where to get the release artifacts'
+    required: false
+    default: 'intuit/auto'
 runs:
   using: composite
   steps:
@@ -41,7 +45,7 @@ runs:
 
         gh release \
           download ${{ inputs.version }} \
-          --repo intuit/auto \
+          --repo ${{ inputs.origin-repo }} \
           --pattern "$name.gz" \
           --dir "$tmp"
         gunzip "$tmp/$name.gz"
